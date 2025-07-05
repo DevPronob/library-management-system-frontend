@@ -33,39 +33,19 @@ A minimal library management  application  using **React**, **Redux Toolkit Quer
 ---
 
 
-## 📦 Getting Started
+## 🛠️ Setup Instructions
 
-### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/library-management.git
-cd library-management
+git clone https://github.com/DevPronob/library-management-system-frontend.git
+cd library-management-system-frontend
 ```
 
-### 2. Install Frontend Dependencies
+### 2. Install Dependencies
 
 ```bash
 cd client
 npm install
-```
-
-### 3. Install Backend Dependencies
-
-```bash
-cd ../server
-npm install
-```
-
-### 4. Run Backend
-
-```bash
-npm run dev
-```
-
-### 5. Run Frontend
-
-```bash
-cd ../client
 npm run dev
 ```
 
