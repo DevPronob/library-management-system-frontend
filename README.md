@@ -3,9 +3,9 @@
 A minimal library management  application  using **React**, **Redux Toolkit Query**, **Node.js**, **Express**, **MongoDB**, and **TypeScript**.
 ---
 
-## 🚀 Features
+##  Features
 
-### 📘 Book Management
+###  Book Management
 - View all books in a table with:
   - Title, Author, Genre, ISBN, Copies, Availability
 - Actions:
@@ -14,16 +14,16 @@ A minimal library management  application  using **React**, **Redux Toolkit Quer
   - **Borrow**: Borrow a specific quantity
 - Add new book with fields like title, author, genre, description, ISBN, and number of copies
 
-### 📕 Borrow Book
+###  Borrow Book
 - Borrow any available book
 - Fields:
   - Quantity (must not exceed available copies)
   - Due Date
 - Logic:
   - If copies = 0, mark book as unavailable
-  - Successful borrow triggers UI update
+  - Successful borrow  UI update
 
-### 📊 Borrow Summary
+###  Borrow Summary
 - Aggregated list of borrowed books
 - Shows:
   - Book Title
@@ -33,7 +33,7 @@ A minimal library management  application  using **React**, **Redux Toolkit Quer
 ---
 
 
-## 🛠️ Setup Instructions
+##  Setup Instructions
 
 
 ```bash

@@ -24,7 +24,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useCreateBookMutation, useDeleteBookMutation } from "@/redux/features/book/bookApi";
+import { useCreateBookMutation } from "@/redux/features/book/bookApi";
 import { useForm, type FieldValues, type SubmitHandler } from "react-hook-form";
 
 function AddBookModal() {

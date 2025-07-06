@@ -56,13 +56,14 @@ function EditBook() {
                   toast.success("Book Updated Successfully")
               }else if(res.error){
                   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                  toast.error(`Error in ${(res.error as any).data.message}`)
+                  toast.error(`Error in ${(res?.error as any)?.data?.message}`)
               }
   
               // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              console.log((res.error as any).data.message)
+              console.log(res)
            } catch (error) {
               console.log(error)
+              toast.error("Internal Server Error")
            }
           }
           if(isLoading){
@@ -168,11 +169,12 @@ function EditBook() {
             <FormField
               control={form.control}
               name="copies"
+              rules={{ min: 0 }}
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Copies</FormLabel>
                   <FormControl>
-                    <Input defaultValue={bookData?.data[0]?.copies}  placeholder="Copies Of Book" type="number" min={1} {...field} />
+                    <Input defaultValue={bookData?.data[0]?.copies}  placeholder="Copies Of Book" min={0} type="number"  {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

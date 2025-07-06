@@ -1,22 +1,21 @@
 import { useGetBookQuery } from '@/redux/features/book/bookApi'
-import { Button } from "@/components/ui/button"
 import {
   Card,
-  CardAction,
   CardContent,
-  CardDescription,
-  CardFooter,
   CardHeader,
-  CardTitle,
 } from "@/components/ui/card"
 import { useParams } from 'react-router-dom'
+import Spinner from '@/components/ui/Spinner'
 
 function BookDetails() {
       const { id } = useParams()
-        const { data: bookData } = useGetBookQuery((id) as string)
+        const { data: bookData,isLoading } = useGetBookQuery((id) as string)
+        if(isLoading){
+            return <Spinner/>
+        }
         console.log(bookData?.data)
   return (
-    <div className='flex items-center flex-col'>
+    <div className='flex items-center flex-col py-12 bg-gray-50'>
          <Card className="w-full max-w-sm ">
       <CardHeader>
       </CardHeader>

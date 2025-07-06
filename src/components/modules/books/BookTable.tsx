@@ -11,24 +11,29 @@ import {
   useDeleteBookMutation,
   useGetBooksQuery,
 } from "@/redux/features/book/bookApi";
-import { cn } from "./../../../lib/utils";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import DeleteConfirmModal from "./DeleteConfirmModal";
+import type { IBook } from "@/types/books.types";
+import Spinner from "@/components/ui/Spinner";
+import toast from "react-hot-toast";
 
 function BookTable() {
   const { data, isLoading, isError } = useGetBooksQuery(undefined);
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
   const [selectedBookId, setSelectedBookId] = useState<string | null>(null);
   const [deleteBook] = useDeleteBookMutation();
-  const navigate = useNavigate();
+  if(isLoading){
+    return <Spinner/>
+  }
+  // const navigate = useNavigate();
 
-  const handleEditButton = (id: string) => {
-    const searchParams = new URLSearchParams(location.search);
-    searchParams.set("modal", "edit");
-    searchParams.set("id", id);
-    navigate(`${location.pathname}?${searchParams.toString()}`);
-  };
+  // const handleEditButton = (id: string) => {
+  //   const searchParams = new URLSearchParams(location.search);
+  //   searchParams.set("modal", "edit");
+  //   searchParams.set("id", id);
+  //   navigate(`${location.pathname}?${searchParams.toString()}`);
+  // };
 
   // 🧠 Step 1: Store book id when user clicks delete
   const handleDeleteClick = (id: string) => {
@@ -45,14 +50,14 @@ function BookTable() {
     }
   };
 
-  if (isLoading) return <p className="p-4 text-center">Loading books...</p>;
+  if (isLoading) return <Spinner/>;
   if (isError)
     return (
-      <p className="p-4 text-center text-red-500">Error fetching books.</p>
+     toast.error("Error In Featching Books")
     );
 
   return (
-    <div className="py-10">
+    <div className="">
       <div className="overflow-x-auto">
         <Table>
           <TableHeader>
@@ -67,7 +72,7 @@ function BookTable() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {data?.data.map((book) => (
+            {data?.data.map((book:IBook) => (
               <TableRow key={book.isbn}>
                 <TableCell className="font-medium">{book.title}</TableCell>
                 <TableCell>{book.author}</TableCell>
@@ -135,7 +140,7 @@ function BookTable() {
                     
 
                     <Button
-                      onClick={() => handleDeleteClick(book._id)}
+                      onClick={() => handleDeleteClick((book._id as string))}
                       variant="destructive"
                       size="sm"
                       className="bg-red-600 hover:bg-red-700 text-white"
