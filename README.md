@@ -49,4 +49,5 @@ npm install
 npm run dev
 ```
 
-### live link : https://assignment-3-blue-seven.vercel.app
+### Frontend Live LINK : https://library-frontend-black.vercel.app/
+### Backend Live Link : https://library-backend-cyan.vercel.app/

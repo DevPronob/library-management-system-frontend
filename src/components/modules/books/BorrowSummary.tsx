@@ -1,10 +1,4 @@
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardContent,
-} from "@/components/ui/card";
+
 
 interface BorrowSummaryItem {
   book: {
@@ -22,34 +16,37 @@ interface BorrowSummaryData {
 
 function BorrowSummary({ summary }: { summary: BorrowSummaryData }) {
   return (
-    <Card className="w-full max-w-6xl mx-auto py-12">
-      <CardHeader>
-        <CardTitle>Borrowed Books Summary</CardTitle>
-        <CardDescription>List of borrowed books and their total quantities.</CardDescription>
-      </CardHeader>
+   <div className="max-w-5xl mx-auto px-4">
+      <h2 className="text-2xl font-bold mb-6 text-center">Borrow Summary</h2>
+      <div className="overflow-x-auto">
+        <table className="min-w-full bg-white shadow rounded-lg">
+          <thead className="bg-gray-100">
+            <tr>
+              <th className="px-6 py-3 text-left text-sm font-medium text-gray-700">Rank</th>
+              <th className="px-6 py-3 text-left text-sm font-medium text-gray-700">Book Title</th>
+              <th className="px-6 py-3 text-left text-sm font-medium text-gray-700">ISBN</th>
+              <th className="px-6 py-3 text-left text-sm font-medium text-gray-700">Total Borrowed</th>
+            </tr>
+          </thead>
+          <tbody>
+            {summary?.data?.map((item, index) => {
+              const book = item.book[0]; // book is an array due to aggregation
 
-      <CardContent>
-       <div className="grid grid-cols-1 md:grid-cols-2 gap-5 lg:grid-cols-3 gap-5 h-full">
-         {summary.data.map((item, index) => (
-          <div key={index} className="mb-6 border p-4 rounded-md shadow-sm ">
-            <p className="font-semibold mb-2 text-sm text-muted-foreground">
-              Total Quantity: <span className="text-black">{item.totalQuantity}</span>
-            </p>
-
-            {item.book.map((book, bookIndex) => (
-              <div
-                key={bookIndex}
-                className="mb-2 p-2  border-primary  rounded border-b-2"
-              >
-                <p className="font-medium"> {book.title}</p>
-                <p className="text-sm text-muted-foreground">ISBN: {book.isbn}</p>
-              </div>
-            ))}
-          </div>
-        ))}
-       </div>
-      </CardContent>
-    </Card>
+              return (
+                <tr key={index} className="border-t">
+                  <td className="px-6 py-4 text-sm">{index + 1}</td>
+                  <td className="px-6 py-4 text-sm">{book.title}</td>
+                  <td className="px-6 py-4 text-sm">{book.isbn}</td>
+                  <td className="px-6 py-4 text-sm">
+                    {item.totalQuantity} copies
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    </div>
   );
 }
 
